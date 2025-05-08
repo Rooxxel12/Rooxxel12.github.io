@@ -1,0 +1,75 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gya Comer</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>Gya Comer 🍢 - ¡Sabe como se ve!</header>
+  <div class="main-container">
+
+    <section class="product-section">
+      <div class="product">
+        <img src="1.jpg" alt="Banderilla">
+        <h3>Banderilla</h3>
+        <p>$15 MXN</p>
+        <button onclick="addToCart('Banderilla', 15)">Agregar</button>
+      </div>
+      <div class="product">
+        <img src="1.jpg" alt="Esquite">
+        <h3>Esquite</h3>
+        <p>$20 MXN</p>
+        <button onclick="addToCart('Esquite', 20)">Agregar</button>
+      </div>
+      <div class="product unavailable">
+        <img src="1.jpg" alt="Churros">
+        <h3>Churros</h3>
+        <p>No disponible</p>
+      </div>
+    </section>
+
+    <section class="cart-section">
+      <h4>🛒 Tu carrito</h4>
+      <ul id="cart-list"></ul>
+
+      <div class="form-group">
+        <label for="colonia">Selecciona tu colonia:</label>
+        <select id="colonia" onchange="actualizarTotal()">
+          <option value="">-- Elige una colonia --</option>
+          <option value="Las Américas">Las Américas</option>
+          <option value="Chapultepec Centro">Chapultepec Centro</option>
+          <option value="Fraccionamiento Sta. Teresa">Fraccionamiento Sta. Teresa</option>
+          <option value="San Isidro">San Isidro</option>
+          <option value="El campesino">El Campesino</option>
+          <option value="La ampliación">La Ampliación</option>
+          <option value="Los carriles">Los Carriles</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="detalles">Calle, número, referencias:</label>
+        <input type="text" id="detalles" placeholder="Ej. Calle 5 #32, frente a OXXO">
+      </div>
+
+      <div class="form-group">
+        <label for="pago">Método de pago:</label>
+        <select id="pago">
+          <option value="Efectivo">Efectivo</option>
+          <option value="Tarjeta">Tarjeta</option>
+        </select>
+      </div>
+
+      <div id="envio">📩 Envío: $0 MXN</div>
+      <div id="total">🟰 Total: $0 MXN</div>
+
+      <button onclick="finalizarPedido()">Finalizar pedido</button>
+    </section>
+
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
