@@ -1,74 +1,178 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gya Comer</title>
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <header>Gya Comer 🍢 - ¡Sabe como se ve!</header>
-  <div class="main-container">
 
-    <section class="product-section">
-      <div class="product">
-        <img src="1.jpg" alt="Banderilla">
-        <h3>Banderilla</h3>
-        <p>$15 MXN</p>
-        <button onclick="addToCart('Banderilla', 15)">Agregar</button>
-      </div>
-      <div class="product">
-        <img src="1.jpg" alt="Esquite">
-        <h3>Esquite</h3>
-        <p>$20 MXN</p>
-        <button onclick="addToCart('Esquite', 20)">Agregar</button>
-      </div>
-      <div class="product unavailable">
-        <img src="1.jpg" alt="Churros">
-        <h3>Churros</h3>
-        <p>No disponible</p>
-      </div>
-    </section>
+  <header>
+    <h1>Gya Comer</h1>
+    <nav>
+      <a href="#banderillas">Banderillas</a>
+      <a href="#bebidas">Bebidas</a>
+      <a href="#postres">Postres</a>
+      <a href="#promos">Promos</a>
+      <a href="#carrito">Carrito</a>
+    </nav>
+  </header>
 
-    <section class="cart-section">
-      <h4>🛒 Tu carrito</h4>
-      <ul id="cart-list"></ul>
+  <main>
+    <div class="contenedor-principal">
+    <!-- Sección de Productos en Tres Columnas -->
+    <div class="productos-grid">
+      <!-- Banderillas -->
+      <section id="banderillas" class="productos">
+        <h2>Banderillas</h2>
+        <div class="item">
+          <h3>Banderilla clásica</h3>
+          <select onchange="cambiarVariante(this)">
+            <option value="clasica" data-precio="20" data-img="4.jpg">Clásica</option>
+            <option value="flamin" data-precio="25" data-img="1.jpg">Flamin Hot</option>
+            <option value="queso" data-precio="22" data-img="3.jpg">Con Queso</option>
+          </select>
+          
+          <div class="img-container">
+            <span class="badge">🔥 Popular</span>
+            <img src="img/banderilla-clasica.jpg" alt="Banderilla clásica" class="producto-img">
+          </div>
 
-      <div class="form-group">
+          <p class="precio">Precio: $20</p>
+          <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+        </div>
+      </section>
+
+      <!-- Bebidas -->
+      <section id="bebidas" class="productos">
+        <h2>Bebidas</h2>
+        <div class="item">
+          <h3>Refrescos</h3>
+          <select onchange="cambiarVariante(this)">
+            <option value="coca" data-precio="20" data-img="coca.jpg">Coca Cola</option>
+            <option value="agua" data-precio="15" data-img="agua.jpg">Agua Natural</option>
+            <option value="pepsi" data-precio="20" data-img="pepsi.jpg">Pepsi</option>
+          </select>
+          
+          <div class="img-container">
+            <span class="badge">🔥 Popular</span>
+            <img src="ref.jpg" alt="Coca Cola" class="producto-img">
+          </div>
+
+          <p class="precio">Precio: $20</p>
+          <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+        </div>
+      </section>
+
+      <!-- Postres -->
+      <section id="postres" class="productos">
+        <h2>Postres</h2>
+        <div class="item">
+          <h3>Pastelito de Chocolate</h3>
+          <select onchange="cambiarVariante(this)">
+            <option value="chocolate" data-precio="30" data-img="img/pastel-chocolate.jpg">Chocolate</option>
+            <option value="vainilla" data-precio="25" data-img="img/pastel-vainilla.jpg">Vainilla</option>
+            <option value="fresa" data-precio="28" data-img="img/pastel-fresa.jpg">Fresa</option>
+          </select>
+          
+          <div class="img-container">
+            <span class="badge">🔥 Popular</span>
+            <img src="img/pastel-chocolate.jpg" alt="Pastel de Chocolate" class="producto-img">
+          </div>
+
+          <p class="precio">Precio: $30</p>
+          <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+        </div>
+      </section>
+      <section id="salchipulpos" class="productos">
+  <h2>Salchipulpos</h2>
+  <div class="productos-grid">
+    <div class="item">
+      <h3>Salchipulpos</h3>
+      <select onchange="cambiarVariante(this)">
+        <option value="clasico" data-precio="35" data-img="img/salchipulpos-clasico.jpg">Clásico</option>
+        <option value="extraqueso" data-precio="40" data-img="img/salchipulpos-queso.jpg">Extra Queso</option>
+        <option value="valentina" data-precio="38" data-img="img/salchipulpos-valentina.jpg">Con Valentina</option>
+      </select>
+      <div class="img-container">
+        <img src="img/salchipulpos-clasico.jpg" alt="Salchipulpos" class="producto-img" />
+      </div>
+      <p class="precio">Precio: $35</p>
+      <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+    </div>
+  </div>
+</section>
+
+<!-- Papas a la Francesa -->
+<section id="papas" class="productos">
+  <h2>Papas a la Francesa</h2>
+  <div class="productos-grid">
+    <div class="item">
+      <h3>Papas a la Francesa</h3>
+      <select onchange="cambiarVariante(this)">
+        <option value="chicas" data-precio="25" data-img="img/papas-chicas.jpg">Chicas</option>
+        <option value="medianas" data-precio="30" data-img="img/papas-medianas.jpg">Medianas</option>
+        <option value="grandes" data-precio="35" data-img="img/papas-grandes.jpg">Grandes</option>
+      </select>
+      <div class="img-container">
+        <img src="img/papas-chicas.jpg" alt="Papas" class="producto-img" />
+      </div>
+      <p class="precio">Precio: $25</p>
+      <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+    </div>
+  </div>
+</section>
+
+<!-- Promociones -->
+<section id="promos" class="productos">
+  <h2>Promociones</h2>
+  <div class="productos-grid">
+    <div class="item">
+      <h3>Combo Banderilla + Refresco</h3>
+      <select onchange="cambiarVariante(this)">
+        <option value="normal" data-precio="40" data-img="img/combo1.jpg">Combo Regular</option>
+        <option value="deluxe" data-precio="45" data-img="img/combo2.jpg">Combo Deluxe</option>
+      </select>
+      <div class="img-container">
+        <img src="img/combo1.jpg" alt="Promo" class="producto-img" />
+      </div>
+      <p class="precio">Precio: $40</p>
+      <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+    </div>
+  </div>
+  
+</section>
+</div>
+
+      <!-- Carrito -->
+      <section id="carrito">
+        <h2>Tu carrito</h2>
+        <ul id="lista-carrito"></ul>
+        <p>Total: $<span id="total">0</span></p>
+
         <label for="colonia">Selecciona tu colonia:</label>
-        <select id="colonia" onchange="actualizarTotal()">
-          <option value="">-- Elige una colonia --</option>
-          <option value="Las Américas">Las Américas</option>
-          <option value="Chapultepec Centro">Chapultepec Centro</option>
-          <option value="Fraccionamiento Sta. Teresa">Fraccionamiento Sta. Teresa</option>
-          <option value="San Isidro">San Isidro</option>
-          <option value="El campesino">El Campesino</option>
-          <option value="La ampliación">La Ampliación</option>
-          <option value="Los carriles">Los Carriles</option>
+        <select id="colonia" onchange="actualizarEnvio()">
+          <option value="0">-- Selecciona --</option>
+          <option value="15">Las Américas ($15)</option>
+          <option value="20">Chapultepec Centro ($20)</option>
+          <option value="20">Fracc. Sta. Teresa ($20)</option>
+          <option value="15">San Isidro ($15)</option>
+          <option value="15">El Campesino ($15)</option>
+          <option value="20">La Ampliación ($20)</option>
+          <option value="25">Los Carriles ($25)</option>
         </select>
-      </div>
 
-      <div class="form-group">
-        <label for="detalles">Calle, número, referencias:</label>
-        <input type="text" id="detalles" placeholder="Ej. Calle 5 #32, frente a OXXO">
-      </div>
-
-      <div class="form-group">
-        <label for="pago">Método de pago:</label>
-        <select id="pago">
+        <input type="text" id="direccion" placeholder="Dirección exacta" />
+        <select id="metodoPago">
           <option value="Efectivo">Efectivo</option>
           <option value="Tarjeta">Tarjeta</option>
         </select>
-      </div>
 
-      <div id="envio">📩 Envío: $0 MXN</div>
-      <div id="total">🟰 Total: $0 MXN</div>
-
-      <button onclick="finalizarPedido()">Finalizar pedido</button>
-    </section>
-
-  </div>
+        <button onclick="enviarPedido()">Enviar pedido por WhatsApp</button>
+      </section>
+    </div>
+  </main>
 
   <script src="script.js"></script>
 </body>
