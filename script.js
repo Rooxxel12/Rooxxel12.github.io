@@ -1,21 +1,22 @@
 // Array para almacenar los productos en el carrito
 let carrito = [];
 
-// Función para cambiar la variante del producto
+// Elementos del DOM
+const listaCarrito = document.getElementById("lista-carrito");
+const totalSpan = document.getElementById("total");
+
+// Función para cambiar la variante del producto (imagen y precio)
 function cambiarVariante(select) {
   const selectedOption = select.options[select.selectedIndex];
   const precio = selectedOption.getAttribute('data-precio');
   const img = selectedOption.getAttribute('data-img');
-  
+
   const contenedor = select.closest('.item');
   contenedor.querySelector('.precio').textContent = `Precio: $${precio}`;
   contenedor.querySelector('img').src = img;
 }
 
-const carrito = [];
-const listaCarrito = document.getElementById("lista-carrito");
-const totalSpan = document.getElementById("total");
-
+// Agregar producto desde un botón del DOM
 function agregarAlCarrito(boton) {
   const item = boton.closest(".item");
   const nombre = item.querySelector("h3").textContent;
@@ -25,16 +26,18 @@ function agregarAlCarrito(boton) {
   const variante = opcion.textContent;
 
   const producto = { nombre, variante, precio };
-
   carrito.push(producto);
   actualizarCarrito();
 }
+
+// Agregar producto manualmente (sin variante)
 function agregarAlCarritoManual(nombre, precio) {
-  carrito.push({ producto: nombre, precio });
-  total += precio;
+  const producto = { nombre, variante: "Manual", precio };
+  carrito.push(producto);
   actualizarCarrito();
 }
 
+// Actualizar el carrito y mostrar los productos
 function actualizarCarrito() {
   listaCarrito.innerHTML = "";
   let total = 0;
@@ -42,25 +45,31 @@ function actualizarCarrito() {
   carrito.forEach((producto, index) => {
     total += producto.precio;
     const li = document.createElement("li");
-    li.innerHTML = `${producto.nombre} (${producto.variante}) - $${producto.precio} 
-    <button onclick="eliminarProducto(${index})">Eliminar</button>`;
+    li.innerHTML = `
+      ${producto.nombre}${producto.variante ? " (" + producto.variante + ")" : ""} - $${producto.precio} 
+      <button onclick="eliminarProducto(${index})">Eliminar</button>
+    `;
     listaCarrito.appendChild(li);
   });
 
   // Sumar envío si ya hay una colonia seleccionada
-  const envio = parseInt(document.getElementById("colonia").value) || 0;
+  const envioValue = document.getElementById("colonia").value;
+  const envio = envioValue === "0" ? 0 : parseInt(envioValue);
   totalSpan.textContent = total + envio;
 }
 
+// Eliminar producto del carrito
 function eliminarProducto(index) {
   carrito.splice(index, 1);
   actualizarCarrito();
 }
 
+// Cuando cambia la colonia, recalcula el total
 function actualizarEnvio() {
   actualizarCarrito();
 }
 
+// Enviar pedido por WhatsApp
 function enviarPedido() {
   if (carrito.length === 0) {
     alert("El carrito está vacío.");
@@ -81,7 +90,7 @@ function enviarPedido() {
   let mensaje = "🛒 *Pedido Gya Comer*%0A";
 
   carrito.forEach((producto) => {
-    mensaje += `• ${producto.nombre} (${producto.variante}) - $${producto.precio}%0A`;
+    mensaje += `• ${producto.nombre}${producto.variante ? " (" + producto.variante + ")" : ""} - $${producto.precio}%0A`;
   });
 
   const total = carrito.reduce((acc, p) => acc + p.precio, 0) + costoEnvio;
@@ -92,7 +101,7 @@ function enviarPedido() {
   mensaje += `%0A💰 *Total:* $${total}`;
   mensaje += `%0A%0A¡Gracias por tu compra! 🎉`;
 
-  const numeroWhatsApp = "527291299844"; // Reemplaza con tu número
+  const numeroWhatsApp = "527291299844";
   const url = `https://wa.me/${numeroWhatsApp}?text=${mensaje}`;
   window.open(url, "_blank");
 }
