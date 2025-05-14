@@ -22,6 +22,28 @@
   <main>
     <div class="contenedor-principal">
     <!-- Sección de Productos en Tres Columnas -->
+    <div class="item">
+  <h3>Relleno</h3>
+  
+  <!-- Selector de relleno -->
+  <select onchange="cambiarVariante(this)">
+    <option disabled selected>Elige tu relleno</option>
+    <option data-precio="50" data-img="rqs.jpg">Salchicha con queso</option>
+    <option data-precio="65" data-img="rq.jpg">Solo queso</option>
+    <option data-precio="45" data-img="rsa.jpg">Solo salchicha</option>
+  </select>
+
+  <!-- Contenedor de imagen -->
+  <div class="img-container">
+    <img class="producto-img" src="re.jpg" alt="Producto">
+    <span class="badge">Nuevo</span>
+  </div>
+
+  <!-- Precio que se actualiza dinámicamente -->
+  <p class="precio">Precio: $--</p>
+
+  <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
+</div>
     <div class="productos-grid">
       <!-- Banderillas -->
       <section id="banderillas" class="productos">
@@ -29,10 +51,11 @@
         <div class="item">
           <h3>Banderilla clásica</h3>
           <select onchange="cambiarVariante(this)">
-            <option value="clasica" data-precio="20" data-img="4.jpg">Clásica</option>
-            <option value="flamin" data-precio="25" data-img="1.jpg">Flamin Hot</option>
-            <option value="papa" data-precio="22" data-img="pa.jpg">Papa</option>
-            <option value="ramen" data-precio="22" data-img="ra.jpg">Ramen</option>
+            <option value="clasica" data-precio="5" data-img="4.jpg">Clásica</option>
+            <option value="flamin" data-precio="10" data-img="1.jpg">Flamin Hot</option>
+            <option value="papa" data-precio="10" data-img="pa.jpg">Papa</option>
+            <option value="ramen" data-precio="5" data-img="ra.jpg">Ramen</option>
+            <option value="takis" data-precio="10" data-img="2.jpg">Takis</option>
           </select>
           
           <div class="img-container">
@@ -40,7 +63,7 @@
             <img src="ban.jpg" alt="Banderilla clásica" class="producto-img">
           </div>
 
-          <p class="precio">Precio: $20</p>
+          <p class="precio">Precio:$...</p>
           <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
         </div>
       </section>
@@ -51,9 +74,9 @@
         <div class="item">
           <h3>Refrescos</h3>
           <select onchange="cambiarVariante(this)">
-            <option value="coca" data-precio="20" data-img="coca.jpg">Coca Cola</option>
+            <option value="coca" data-precio="25" data-img="coca.jpg">Coca Cola</option>
             <option value="agua" data-precio="15" data-img="agua.jpg">Agua Natural</option>
-            <option value="pepsi" data-precio="20" data-img="pepsi.jpg">Pepsi</option>
+            <option value="pepsi" data-precio="25" data-img="pepsi.jpg">Pepsi</option>
           </select>
           
           <div class="img-container">
@@ -61,9 +84,11 @@
             <img src="ref.jpg" alt="Coca Cola" class="producto-img">
           </div>
 
-          <p class="precio">Precio: $20</p>
+          <p class="precio">Precio: $25</p>
           <button onclick="agregarAlCarrito(this)">Agregar al carrito</button>
-        </div>
+        </div>}
+
+
       </section>
 
       <!-- Postres -->
